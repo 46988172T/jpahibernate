@@ -1,9 +1,6 @@
 package com.leosssdroid.modelo;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -27,22 +24,28 @@ public class Empleado implements Serializable{
     @Column (name = "FECHA_NACIMIENTO")
     private LocalDate fechaNacimiento;
 
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "ID_DIRECCION")
+    private Direccion direccion;
+
     @Column (name = "FECHA_INCORPORACION")
     private LocalDate fechaIncorporacion;
 
-    @Column (name = "DEPARTAMENTO")
+    @OneToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "ID_DEP")
     private Departamento departamento;
 
     public Empleado() {
     }
 
-    public Empleado(Long idEmpleado, String apellidos, String nombre, LocalDate fechaNacimiento, LocalDate fechaIncorporacion, Departamento departamento) {
+    public Empleado(Long idEmpleado, String apellidos, String nombre, LocalDate fechaNacimiento, LocalDate fechaIncorporacion, Departamento departamento, Direccion direccion) {
         this.idEmpleado = idEmpleado;
         this.apellidos = apellidos;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.fechaIncorporacion = fechaIncorporacion;
         this.departamento = departamento;
+        this.direccion = direccion;
     }
 
     public Long getIdEmpleado() {
@@ -93,6 +96,14 @@ public class Empleado implements Serializable{
         this.departamento = departamento;
     }
 
+    public Direccion getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(Direccion direccion) {
+        this.direccion = direccion;
+    }
+
     @Override
     public String toString() {
         return "Empleado{" +
@@ -102,6 +113,7 @@ public class Empleado implements Serializable{
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", fechaIncorporacion=" + fechaIncorporacion +
                 ", departamento=" + departamento.getNombreDep() +
+                ", direccion=" + direccion +
                 '}';
     }
 }

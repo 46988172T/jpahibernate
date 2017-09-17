@@ -3,15 +3,15 @@ package com.leosssdroid.modelo;
 
 import javafx.scene.chart.XYChart;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "DEPARTAMENTO")
 public class Departamento implements Serializable{
+
+    private static final long serialVersionUID = -512611204318230542L;
 
     @Id
     @Column(name ="ID_DEP")
@@ -19,6 +19,7 @@ public class Departamento implements Serializable{
 
     @Column(name ="NOMBRE_DEP")
     private String nombreDep;
+
 
     public Departamento() {
     }

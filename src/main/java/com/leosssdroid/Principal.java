@@ -14,11 +14,8 @@ public class Principal {
     public static void main(String[] args) {
 
         em.getTransaction().begin();
-        em.persist(Registro.altaDepartamento());
         em.persist(Registro.altaEmpleado());
         em.getTransaction().commit();
         Registro.getEmpleadosFromBBDD();
-        Registro.getDepartamentosFromBBDD();
-
     }
 }
